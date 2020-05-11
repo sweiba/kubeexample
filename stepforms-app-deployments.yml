@@ -23,7 +23,7 @@ spec:
           configMap:
             name: stepforms-nginx-config
             items:
-              - key: stepforms-nginx-config
+              - key: config
                 path: default.conf
       containers:
         - name: stepforms-app
