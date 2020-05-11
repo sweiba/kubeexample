@@ -25,5 +25,6 @@ spec:
         tty: true
       restartPolicy: Always
   selector:
-    io.kompose.service: db
+    matchLabels:
+      io.kompose.service: db
 status: {}
