@@ -8,12 +8,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: stepforms-app
+      app: stepforms-app-container
       tier: backend
   template:
     metadata:
       labels:
-        app: stepforms-app
+        app: stepforms-app-container
         tier: backend
     spec:
       volumes:
@@ -26,7 +26,7 @@ spec:
               - key: config
                 path: default.conf
       containers:
-        - name: stepforms-app
+        - name: stepforms-app-container
           image: sweiba/stepforms-example:v1
           volumeMounts:
             - mountPath: "/var/www"

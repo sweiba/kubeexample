@@ -11,6 +11,6 @@ spec:
     - port: 80
       targetPort: 80
   selector:
-    app: stepforms-app
+    app: stepforms-app-container
 status:
   loadBalancer: {}
