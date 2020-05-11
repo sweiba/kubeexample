@@ -17,12 +17,11 @@ spec:
         tier: backend
     spec:
       volumes:
-        - name: stepforms-app-volume
-          persistentVolumeClaim:
-            claimName: stepforms-app-volume
+        - name: stepforms-shared
+          emptyDir: {}
       containers:
         - name: stepforms-app-container
           image: sweiba/stepforms-example:v1
           volumeMounts:
             - mountPath: "/var/www"
-              name: stepforms-app-volume
+              name: stepforms-shared
