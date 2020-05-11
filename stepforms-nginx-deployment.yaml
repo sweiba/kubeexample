@@ -1,26 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    io.kompose.service: stepforms-nginx
   name: stepforms-nginx
+  labels:
+    tier: backend
 spec:
   replicas: 1
-  strategy:
-    type: Recreate
+  selector:
+    matchLabels:
+      app: stepforms-nginx
+      tier: backend
   template:
     metadata:
       labels:
-        io.kompose.service: stepforms-nginx
+        app: stepforms-nginx
+        tier: backend
     spec:
+      volumes:
+        - name: config
+          configMap:
+            name: stepforms-nginx-config
+            items:
+              - key: config
+                path: site.conf
       containers:
-        - image: nginx
-          name: stepforms-nginx
+        - name: nginx
+          image: nginx
           ports:
             - containerPort: 80
-          resources: {}
-      restartPolicy: Always
-  selector:
-    matchLabels:
-      io.kompose.service: stepforms-nginx
-status: {}

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: stepforms-app
+  labels:
+    tier: backend
+spec:
+  selector:
+    app: stepforms-app
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 9000

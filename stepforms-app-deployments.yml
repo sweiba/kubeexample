@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stepforms-app
+  labels:
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stepforms-app
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: stepforms-app
+        tier: backend
+    spec:
+      containers:
+        - name: stepforms-app-container
+          image: sweiba/stepforms-example:v1
