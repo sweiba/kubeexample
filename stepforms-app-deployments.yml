@@ -19,7 +19,7 @@ spec:
       volumes:
         - name: stepforms-shared
           emptyDir: {}
-        - name: stepforms-nginx-config
+        - name: config
           configMap:
             name: stepforms-nginx-config
             items:
