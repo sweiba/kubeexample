@@ -23,8 +23,14 @@ spec:
             items:
               - key: config
                 path: site.conf
+        - name: stepforms-app-volume
+          persistentVolumeClaim:
+            claimName: stepforms-app-volume
       containers:
         - name: nginx
           image: nginx
           ports:
             - containerPort: 80
+          volumeMounts:
+            - mountPath: "/var/www"
+              name: stepforms-app-volume
