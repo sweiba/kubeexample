@@ -20,4 +20,7 @@ spec:
             - containerPort: 80
           resources: {}
       restartPolicy: Always
+  selector:
+    matchLabels:
+      io.kompose.service: stepforms-nginx
 status: {}
