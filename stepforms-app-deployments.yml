@@ -5,6 +5,10 @@ metadata:
   labels:
     tier: backend
 spec:
+  volumes:
+    - name: stepforms-app-volume
+      persistentVolumeClaim:
+        claimName: stepforms-app-volume
   replicas: 1
   selector:
     matchLabels:
@@ -19,3 +23,6 @@ spec:
       containers:
         - name: stepforms-app-container
           image: sweiba/stepforms-example:v1
+          volumeMounts:
+            - mountPath: "/var/www"
+              name: stepforms-app-volume
