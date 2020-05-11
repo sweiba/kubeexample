@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: stepforms-app
+  name: stepforms-app
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: stepforms-app
+    spec:
+      containers:
+      - image: stepforms-app
+        name: stepforms-api
+        resources: {}
+      restartPolicy: Always
+status: {}

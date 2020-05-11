@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: db
+  name: db
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: db
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+        - name: MYSQL_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
+        - name: MYSQL_USER
+        image: mysql:8
+        name: stepforms-db
+        resources: {}
+        tty: true
+      restartPolicy: Always
+status: {}

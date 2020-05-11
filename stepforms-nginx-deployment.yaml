@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: stepforms-nginx
+  name: stepforms-nginx
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: stepforms-nginx
+    spec:
+      containers:
+        - image: nginx
+          name: stepforms-nginx
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}
