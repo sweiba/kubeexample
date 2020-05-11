@@ -22,7 +22,7 @@ spec:
             name: stepforms-nginx-config
             items:
               - key: config
-                path: site.conf
+                path: default.conf
         - name: stepforms-shared
           emptyDir: {}
       containers:
@@ -33,3 +33,5 @@ spec:
           volumeMounts:
             - mountPath: "/var/www"
               name: stepforms-shared
+            - name: config
+              mountPath: /etc/nginx/conf.d
