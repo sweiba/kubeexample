@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stepforms-nginx
+  labels:
+    tier: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stepforms-nginx-container
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: stepforms-nginx-container
+        tier: backend
+    spec:
+      volumes:
+        - name: my-pv-storage
+          persistentVolumeClaim:
+            claimName: my-pv-claim
+        - name: config
+          configMap:
+            name: stepforms-nginx-config
+            items:
+              - key: config
+                path: default.conf
+      containers:
+        - name: stepforms-nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: config
+              mountPath: /etc/nginx/conf.d
+            - name: my-pv-storage
+              mountPath: /var/www

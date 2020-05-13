@@ -10,7 +10,8 @@ spec:
   ports:
     - port: 80
       targetPort: 80
+      nodePort: 30012
   selector:
-    app: stepforms-app-container
+    app: stepforms-nginx-container
 status:
   loadBalancer: {}
