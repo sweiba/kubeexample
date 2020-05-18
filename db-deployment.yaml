@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stepforms-db
+  labels:
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: stepforms-db-container
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: stepforms-db-container
+        tier: backend
+    spec:
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: stepforms-db-pvc
+      containers:
+        - name: stepforms-db-container
+          image: mysql:8
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets-bfgk577d6k
+                  key: name
+            - name: MYSQL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets-bfgk577d6k
+                  key: user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets-bfgk577d6k
+                  key: password
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets-bfgk577d6k
+                  key: rootpassword
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              name: storage

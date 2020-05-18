@@ -17,9 +17,9 @@ spec:
         tier: backend
     spec:
       volumes:
-        - name: my-pv-storage
+        - name: storage
           persistentVolumeClaim:
-            claimName: my-pv-claim
+            claimName: stepforms-app-pvc
       containers:
         - name: stepforms-app-container
           image: sweiba/stepforms-example:v2
@@ -27,4 +27,4 @@ spec:
             - containerPort: 9000
           volumeMounts:
             - mountPath: "/var/www"
-              name: my-pv-storage
+              name: storage

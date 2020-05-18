@@ -13,5 +13,3 @@ spec:
       nodePort: 30012
   selector:
     app: stepforms-nginx-container
-status:
-  loadBalancer: {}

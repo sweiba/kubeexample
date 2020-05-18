@@ -17,9 +17,9 @@ spec:
         tier: backend
     spec:
       volumes:
-        - name: my-pv-storage
+        - name: storage
           persistentVolumeClaim:
-            claimName: my-pv-claim
+            claimName: stepforms-app-pvc
         - name: config
           configMap:
             name: stepforms-nginx-config
@@ -34,5 +34,5 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /etc/nginx/conf.d
-            - name: my-pv-storage
+            - name: storage
               mountPath: /var/www
