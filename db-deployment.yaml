@@ -24,12 +24,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: db-secrets-bfgk577d6k
-                  key: name
+                  key: database
             - name: MYSQL_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: db-secrets-bfgk577d6k
-                  key: user
+                  key: username
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -39,7 +39,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: db-secrets-bfgk577d6k
-                  key: rootpassword
+                  key: root_password
           ports:
             - containerPort: 3306
           volumeMounts:
