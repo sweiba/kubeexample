@@ -23,6 +23,22 @@ spec:
       containers:
         - name: stepforms-app-container
           image: sweiba/stepforms-example:v2
+          env:
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: database
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: password
           ports:
             - containerPort: 9000
           volumeMounts:
